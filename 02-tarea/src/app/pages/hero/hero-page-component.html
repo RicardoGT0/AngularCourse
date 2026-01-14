@@ -11,7 +11,7 @@
   <dd>{{ getHeroDescription() }}</dd>
 
   <dt>Capitalizado:</dt>
-  <dd>{{ capitalizeHero() }}</dd>
+  <dd>{{ name() | uppercase }}</dd>
 </dl>
 
 <button (click)="changeHero()" class="btn btn-primary mx-2">
