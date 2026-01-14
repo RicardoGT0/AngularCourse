@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, isDevMode } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,15 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Ricardo';
+  private router = inject(Router);
+  public title= "Ricardo";
+
+  getCurrentRoute(): string {
+    return this.router.url;
+  }
+
+  getEnvironment(): string {
+    return isDevMode() ? 'development' : 'production';
+  }
+
 }
