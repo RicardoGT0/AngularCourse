@@ -12,11 +12,16 @@ export class AppComponent {
   public title= "Ricardo";
 
   getCurrentRoute(): string {
-    return this.router.url;
+    const url =this.router.url;
+    if (url==="/") {
+      return "HOME";
+    }else{
+      return url.replace("/","").toUpperCase();
+    }
   }
 
   getEnvironment(): string {
-    return isDevMode() ? 'development' : 'production';
+    return isDevMode() ? 'DEVELOPMENT' : 'PRODUCTION';
   }
 
 }
