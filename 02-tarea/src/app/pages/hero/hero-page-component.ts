@@ -1,4 +1,4 @@
-import { Component, signal } from "@angular/core";
+import { Component, computed, signal } from "@angular/core";
 
 @Component({
   templateUrl: './hero-page-component.html',
@@ -8,9 +8,13 @@ export class HeroPageComponent {
   public name = signal("Ironman");
   public age = signal(45);
 
-  public getHeroDescription(): string {
+  public capitalizeHero= computed(()=> {
+    return this.name().toUpperCase();
+  })
+
+  public getHeroDescription= computed(()=> {
     return `${this.name()} - ${this.age()}`;
-  }
+  })
 
   public changeHero(): void {
     this.name.set("Spiderman");
@@ -24,9 +28,5 @@ export class HeroPageComponent {
 
   public changeAge(value: number): void {
     this.age.set(value);
-  }
-
-  public capitalizeHero(): string {
-    return this.name().toUpperCase();
   }
 }
