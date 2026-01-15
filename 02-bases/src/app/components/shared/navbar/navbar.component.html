@@ -1,0 +1,6 @@
+<nav class="navbar">
+  <ul class="navbar-nav">
+    <li><a routerLink="/counter" routerLinkActive="active">Contador</a></li>
+    <li><a [routerLink]="['/hero']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Heroe</a></li>
+  </ul>
+</nav>
