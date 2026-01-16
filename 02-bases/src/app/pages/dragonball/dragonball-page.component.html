@@ -17,7 +17,8 @@
         <li>
           <span>
             {{ i + 1 }} .- {{ character.name }} -
-            <strong id="power" [class.text-danger]="character.power > 10000">{{ character.power }}</strong>
+            <!-- <strong id="power" class="{{styleByPower(character.power)}}">{{ character.power }}</strong> -->
+            <strong id="power" [ngClass]="styleByPower(character.power)">{{ character.power }}</strong>
           </span>
         </li>
         }
