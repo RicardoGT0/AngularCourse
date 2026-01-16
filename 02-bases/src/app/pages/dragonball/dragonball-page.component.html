@@ -14,13 +14,19 @@
       <h2>Listado</h2>
       <ul>
         @for( character of characters(); track character.id; let i = $index; let ev = $even; ){
-        <li>
-          <span>
-            {{ i + 1 }} .- {{ character.name }} -
-            <!-- <strong id="power" class="{{styleByPower(character.power)}}">{{ character.power }}</strong> -->
-            <strong id="power" [ngClass]="styleByPower(character.power)">{{ character.power }}</strong>
-          </span>
-        </li>
+          @if ( character.power >5000) {
+          <li>
+            <span>
+              {{ i + 1 }} .- {{ character.name }} -
+              <!-- <strong id="power" class="{{styleByPower(character.power)}}">{{ character.power }}</strong> -->
+              <strong id="power" [ngClass]="styleByPower(character.power)">{{ character.power }}</strong>
+            </span>
+          </li>
+          }@else {
+            <li>
+              <strong>Aqui no hay nadie</strong>
+            </li>
+          }
         }
       </ul>
     </div>

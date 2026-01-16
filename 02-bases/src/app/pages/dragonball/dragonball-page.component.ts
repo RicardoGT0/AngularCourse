@@ -19,6 +19,11 @@ export class DragonballPageComponent {
     { id: 100, name: "Goku", power: 15000 },
     { id: 200, name: "Vegeta", power: 12000 },
     { id: 300, name: "Piccolo", power: 7000 },
+    { id: 400, name: "Krillin", power: 5000 },
+    { id: 500, name: "Gohan", power: 8000 },
+    { id: 600, name: "Trunks", power: 9000 },
+    { id: 700, name: "Frieza", power: 13000 },
+    { id: 800, name: "Yamcha", power: 1000 },
   ])
 
   styleByPower(power: number) {
@@ -26,8 +31,10 @@ export class DragonballPageComponent {
       return "text-danger";
     } else if (power > 8000) {
       return "text-warning";
+    } else if (power > 5000) {
+      return "text-success"
     } else {
-      return "text-success";
+      return "text-info" ;
     }
   }
 }
