@@ -30,13 +30,21 @@ export class DragonballPageComponent {
   ])
 
   addCharacter() {
+    if (!this.name() || this.power() <= 0) return;
+
     const newCharacter: Character = {
       id: Math.max(...this.characters().map(c => c.id)) + 100,
       name: this.name(),
       power: this.power()
     };
-    console.log(newCharacter);
 
+    this.characters.update(list => [...list, newCharacter]);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.name.set("");
+    this.power.set(0);
   }
 
   styleByPower(power: number) {
