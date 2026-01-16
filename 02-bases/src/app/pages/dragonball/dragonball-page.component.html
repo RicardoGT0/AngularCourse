@@ -1,0 +1,27 @@
+<h1>Dragon Ball Page</h1>
+
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h2>Agregar</h2>
+      <form class="d-flex flex-column gap-3">
+        <input type="text" placeholder="Nombre" class="form-control">
+        <input type="number" placeholder="Poder" class="form-control">
+        <button class="btn btn-primary">Agregar</button>
+      </form>
+    </div>
+    <div class="col-12">
+      <h2>Listado</h2>
+      <ul>
+        @for( character of characters(); track character.id; let i = $index; let ev = $even; ){
+        <li>
+          <span>
+            {{ i + 1 }} .- {{ character.name }} -
+            <strong class="{{ ev ? 'text-danger' : '' }}" id="power">{{ character.power }}</strong>
+          </span>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
