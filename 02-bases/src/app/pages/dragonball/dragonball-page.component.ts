@@ -15,6 +15,9 @@ interface Character {
 })
 
 export class DragonballPageComponent {
+  name = signal<string>("");
+  power = signal<number>(0);
+
   characters = signal<Character[]>([
     { id: 100, name: "Goku", power: 15000 },
     { id: 200, name: "Vegeta", power: 12000 },
@@ -25,6 +28,16 @@ export class DragonballPageComponent {
     { id: 700, name: "Frieza", power: 13000 },
     { id: 800, name: "Yamcha", power: 1000 },
   ])
+
+  addCharacter() {
+    const newCharacter: Character = {
+      id: Math.max(...this.characters().map(c => c.id)) + 100,
+      name: this.name(),
+      power: this.power()
+    };
+    console.log(newCharacter);
+
+  }
 
   styleByPower(power: number) {
     if (power > 12000) {
