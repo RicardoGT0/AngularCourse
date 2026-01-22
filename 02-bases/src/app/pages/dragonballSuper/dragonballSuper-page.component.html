@@ -1,0 +1,15 @@
+<h1>Dragon Ball Super Page</h1>
+
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h2>Agregar</h2>
+      <div class="d-flex flex-column gap-3"  >
+        <input type="text" placeholder="Nombre" class="form-control" [value]="name()" (input)="name.set(txtname.value)" #txtname>
+        <input type="number" placeholder="Poder" class="form-control" [value]="power()" (change)="power.set(txtpower.valueAsNumber)" #txtpower>
+        <button (click)="addCharacter()" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+    <dragonball-character-list [characters]="characters()"/>
+  </div>
+</section>
