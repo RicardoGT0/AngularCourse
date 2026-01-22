@@ -2,15 +2,8 @@
 
 <section class="container-fluid">
   <div class="row">
-    <div class="col-12">
-      <h2>Agregar</h2>
-      <div class="d-flex flex-column gap-3">
-        <input type="text" placeholder="Nombre" class="form-control" [value]="name()" (input)="name.set(txtname.value)"
-          #txtname>
-        <input type="number" placeholder="Poder" class="form-control" [value]="power()"
-          (change)="power.set(txtpower.valueAsNumber)" #txtpower>
-        <button (click)="addCharacter()" class="btn btn-primary">Agregar</button>
-      </div>
+    <div class="col-12 my-4">
+      <dragonball-character-add [charactersLength]="characters().length" (addCharacterEmit)="addCharacter($event)"/>
     </div>
     <div class="col-12">
       <dragonball-character-list [characters]="characters()" />
