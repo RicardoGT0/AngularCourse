@@ -1,19 +1,12 @@
 import { Component, signal } from "@angular/core";
-import { NgClass } from "@angular/common";
 import { CharacterList } from "../../components/dragonball/character-list/character-list";
-
-interface Character {
-  id: number;
-  name: string;
-  power: number;
-}
-
+import type { Character } from "../../interfaces/Character.interface";
 
 @Component({
   selector: "dragonballSuper",
   templateUrl: "./dragonballSuper-page.component.html",
   styleUrl: "./dragonballSuper-page.component.css",
-  imports: [NgClass, CharacterList],
+  imports: [CharacterList],
 })
 
 export class DragonballSuperPageComponent {
@@ -47,17 +40,5 @@ export class DragonballSuperPageComponent {
   resetForm() {
     this.name.set("");
     this.power.set(0);
-  }
-
-  styleByPower(power: number) {
-    if (power > 12000) {
-      return "text-danger";
-    } else if (power > 8000) {
-      return "text-warning";
-    } else if (power > 5000) {
-      return "text-success"
-    } else {
-      return "text-info" ;
-    }
   }
 }
