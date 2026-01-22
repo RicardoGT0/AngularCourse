@@ -11,6 +11,7 @@ import { NgClass } from "@angular/common";
 })
 export class CharacterList {
   characters = input.required<Character[]>();
+  listName = input.required<string>();
 
   styleByPower(power: number) {
     if (power > 12000) {
