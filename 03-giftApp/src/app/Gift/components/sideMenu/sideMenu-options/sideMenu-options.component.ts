@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { MenuOption } from '../../interfaces/MenuOptions.interfaces';
+import type { MenuOption } from '../../../interfaces/MenuOptions.interfaces';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
