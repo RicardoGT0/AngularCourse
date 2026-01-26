@@ -1,5 +1,19 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-  @for(item of gifs(); track item;){
-    <gif-list-item [gif]="item" />
+  @for (item of gifs(); track $index; let i = $index) {
+
+    @if (i % 3 === 0) {
+      <div class="grid gap-4">
+        <gif-list-item [gif]="gifs()[i]" />
+
+        @if (gifs()[i + 1]) {
+          <gif-list-item [gif]="gifs()[i + 1]" />
+        }
+
+        @if (gifs()[i + 2]) {
+          <gif-list-item [gif]="gifs()[i + 2]" />
+        }
+      </div>
+    }
+
   }
 </div>
