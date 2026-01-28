@@ -8,6 +8,4 @@ import { GifService } from './../../services/gif.service';
 })
 export default class TrendingPageComponent {
   gifServices = inject(GifService);
-
-  trendingGifs =  computed(() => this.gifServices.trendingData().map(gif => gif.url));
 }
