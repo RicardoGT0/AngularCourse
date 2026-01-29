@@ -1,4 +1,20 @@
 <div id="menu" class="bg-gray-900 min-h-full z-10 text-slate-300 w-64 h-screen">
   <side-menu-header />
   <side-menu-options />
+  <hr class="my-4 mx-6" />
+  <div class="px-6">
+    <button (click)="showHistory()" [ngClass]="showingHistory()? 'bg-blue-800': ''"
+      class="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150">
+      <div>
+        <i class="fa-solid fa-clock-rotate-left"></i>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-lg font-bold leading-5 text-white text-start">History</span>
+        <span class="text-sm text-white/50 hidden md:block text-start">Mostrar/Ocultar el historial de busquedas</span>
+      </div>
+    </button>
+    @if( showingHistory() ){
+    <side-menu-history />
+    }
+  </div>
 </div>
