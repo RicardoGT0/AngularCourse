@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { computed, inject, Injectable, signal } from "@angular/core";
+import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { environment } from "@environments/environment";
 import type { GiphyResponse } from '../interfaces/Giphy.interfaces';
 import { GifMapper } from "../mapper/gif.mapper";
@@ -16,7 +16,20 @@ export class GifService {
 
   constructor() {
     this.loadTrendingGifs();
+    this.loadFromLocalStorage();
   }
+
+  loadFromLocalStorage() {
+    const data = localStorage.getItem('history');
+    if (!data)
+     return;
+
+    this.searchHistory.set(JSON.parse(data));
+  }
+
+  saveToLocalStorage = effect(() => {
+    localStorage.setItem('history', JSON.stringify(this.searchHistory()));
+  });
 
   loadTrendingGifs() {
     this.http.get<GiphyResponse>(`${environment.URLGiphy}${environment.URLTrendingGifs}`,
