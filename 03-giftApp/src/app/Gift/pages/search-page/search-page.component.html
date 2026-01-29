@@ -3,5 +3,5 @@
 
 <input class="border border-blue-700 rounded-md w-full my-5 text-black p-3" (keyup.enter)="searchGifs(txtSearch.value)" #txtSearch/>
 
-<gif-list [gifs]="gifServices.searchData()" />
+<gif-list [gifs]="gifs()" />
 
