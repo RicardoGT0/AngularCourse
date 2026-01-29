@@ -20,7 +20,7 @@ export class GifService {
   }
 
   loadFromLocalStorage() {
-    const data = localStorage.getItem('history');
+    const data = localStorage.getItem('history') ?? '{}';
     if (!data)
      return;
 
@@ -70,5 +70,9 @@ export class GifService {
         }))
       })
     )
+  }
+
+  getGifByQuery(query: string): Gif[] {
+    return this.searchHistory()[query] ?? [];
   }
 }

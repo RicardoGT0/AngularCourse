@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
@@ -14,5 +14,5 @@ export default class HistoryPageComponent {
   query = toSignal(inject(ActivatedRoute).params.pipe(map(params => params['query'])));
   gifServices = inject(GifService);
 
-  gifs = computed(() => this.gifServices.searchHistory()[this.query()]);
+  gifs = computed(() => this.gifServices.getGifByQuery(this.query()));
 }
