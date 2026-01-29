@@ -9,7 +9,7 @@ import { Gif } from "../interfaces/Gif.interfaces";
 export class GifService {
   private http = inject(HttpClient);
   trendingData=signal<Gif[]>([])
-
+  searchData=signal<Gif[]>([])
 
   constructor() {
     this.loadTrendingGifs();
@@ -29,6 +29,24 @@ export class GifService {
     ).subscribe(resp => {
       const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
       this.trendingData.set(gifs);
+    });
+  }
+
+  searchGifs(query: string) {
+    this.http.get <GiphyResponse> (`${environment.URLGiphy}${environment.URLSearchGifs}`,
+      {
+        params: {
+          api_key: environment.APIKey,
+          q: query,
+          limit:25,
+          offset:0,
+          rating:'g',
+          lang:'es',
+        }
+      }
+    ).subscribe(resp => {
+      const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
+      this.searchData.set(gifs);
     });
   }
 }
