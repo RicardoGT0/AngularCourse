@@ -10,6 +10,8 @@ import { map, tap } from "rxjs";
 export class GifService {
   private http = inject(HttpClient);
   trendingData = signal<Gif[]>([])
+  trendingGifsLoading = signal(false);
+  trendingPage = signal(0);
 
   searchHistory = signal<Record<string, Gif[]>>({});
   searchHistoryKeys = computed(() => Object.keys(this.searchHistory()));
@@ -32,19 +34,25 @@ export class GifService {
   });
 
   loadTrendingGifs() {
+    if(this.trendingGifsLoading())
+      return;
+    this.trendingGifsLoading.set(true);
+
     this.http.get<GiphyResponse>(`${environment.URLGiphy}${environment.URLTrendingGifs}`,
       {
         params: {
           api_key: environment.APIKey,
-          limit: 25,
-          offset: 0,
+          limit: 50,
+          offset: this.trendingPage() * 50,
           rating: 'g',
           lang: 'es',
         }
       }
     ).subscribe(resp => {
       const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
-      this.trendingData.set(gifs);
+      this.trendingData.update(currentGifs => [...currentGifs, ...gifs]);
+      this.trendingPage.update(currentPage => currentPage + 1);
+      this.trendingGifsLoading.set(false);
     });
   }
 
@@ -54,8 +62,8 @@ export class GifService {
         params: {
           api_key: environment.APIKey,
           q: query,
-          limit: 25,
-          offset: 0,
+          limit: 50,
+          offset: this.trendingPage() * 50,
           rating: 'g',
           lang: 'es',
         }

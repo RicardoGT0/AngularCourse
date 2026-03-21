@@ -1,1 +1,1 @@
-<gif-list [gifs]="gifServices.trendingData()" />
+<gif-list (needToLoadMore)="gifServices.loadTrendingGifs()" [gifs]="gifServices.trendingData()" />
